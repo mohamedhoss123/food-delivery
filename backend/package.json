@@ -29,6 +29,7 @@
     "@quixo3/prisma-session-store": "^3.1.13",
     "@types/argon2": "^0.15.4",
     "@types/cookie-parser": "^1.4.9",
+    "@types/express-session": "^1.18.2",
     "argon2": "^0.43.0",
     "class-validator": "^0.14.2",
     "cookie-parser": "^1.4.7",
