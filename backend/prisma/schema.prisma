@@ -15,16 +15,13 @@ model users {
   name     String
   email    String   @unique
   password String?
-  session  session[]
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 }
 
-model session {
-  id       String   @id @default(cuid())
-  user     users    @relation(fields: [userId], references: [id])
-  userId   String
-  data     Json
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      String
+  expiresAt   DateTime
 }
