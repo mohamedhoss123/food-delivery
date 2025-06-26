@@ -1,14 +1,17 @@
-import { Controller, Post,Body } from '@nestjs/common';
+import { Controller, Post,Body, UseFilters } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { LoginDto } from './dto/login.dto';
+import { PrismaErrorFilter } from './filters/email-used-filters';
 @Controller('auth')
+@UseFilters(new PrismaErrorFilter())
 export class AuthController {
     constructor(private readonly authService: AuthService) {}
 
     @Post('register')
     async register(@Body() data: CreateUserDto) {
-        return this.authService.createUser(data);
+        await this.authService.createUser(data);
+        return 201;
     }
 
     @Post('login')
