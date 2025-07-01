@@ -17,7 +17,7 @@ This will:
 - Build and run the backend service
 
 3. Access the application:
-- Backend API: http://localhost:3000
+- Backend API: http://localhost:3001
 - Database: PostgreSQL running on port 5432
 
 ## Development
@@ -41,5 +41,5 @@ Note: The `.env` file is gitignored for security reasons. Make sure to create yo
 
 ## Swagger Docs
 
-The Swagger documentation for the API is available at http://localhost:3000/api
+The Swagger documentation for the API is available at http://localhost:3001/api
 
