@@ -36,3 +36,12 @@ model Restaurant {
     createdAt DateTime @default(now())
     updatedAt DateTime @default(now())
 }
+
+model Item {
+    id String @id @default(cuid())
+    name String
+    image_url String
+    price Float
+    createdAt DateTime @default(now())
+    updatedAt DateTime @default(now())
+}
