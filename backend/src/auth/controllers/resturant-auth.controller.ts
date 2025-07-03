@@ -1,5 +1,5 @@
 import { Controller, Post,Body, UseFilters, Get,Req, Session, UseGuards, Response } from "@nestjs/common";
-import { ResturantService } from "src/auth/resturant/resturant-auth.service";
+import { ResturantService } from "src/auth/services/resturant-auth.service";
 import { CreateResturantDto } from "../dto/create-resturant.dto";
 import { LoginResturantDto } from "../dto/login-resturant.dto";
 import { ResturantAuthGuard } from "../guards/resturant-auth-gaurd";

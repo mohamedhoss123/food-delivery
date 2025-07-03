@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { UserAuthController } from './user/user-auth.controller';
-import { AuthService } from './user/user.service';
-import { ResturantService } from 'src/auth/resturant/resturant-auth.service';
-import { ResturantAuthController } from './resturant/resturant-auth.controller';
+import { UserAuthController } from './controllers/user-auth.controller';
+import { AuthService } from './services/user.service';
+import { ResturantService } from 'src/auth/services/resturant-auth.service';
+import { ResturantAuthController } from './controllers/resturant-auth.controller';
 
 @Module({
   controllers: [UserAuthController,ResturantAuthController],

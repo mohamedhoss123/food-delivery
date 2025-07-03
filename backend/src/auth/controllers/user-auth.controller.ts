@@ -1,5 +1,5 @@
 import { Controller, Post,Body, UseFilters, Get,Req, Session, UseGuards, Response } from '@nestjs/common';
-import { AuthService } from './user.service';
+import { AuthService } from '../services/user.service';
 import { CreateUserDto } from '../dto/create-user.dto';
 import { LoginDto } from '../dto/login.dto';
 import { PrismaErrorFilter } from '../filters/prisma-filters';
