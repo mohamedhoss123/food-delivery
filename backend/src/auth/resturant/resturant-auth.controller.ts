@@ -3,8 +3,8 @@ import { ResturantService } from "src/auth/resturant/resturant-auth.service";
 import { CreateResturantDto } from "../dto/create-resturant.dto";
 import { LoginResturantDto } from "../dto/login-resturant.dto";
 import { ResturantAuthGuard } from "../guards/resturant-auth-gaurd";
-@Controller('resturant')
-export class ResturantController {
+@Controller('auth/resturant')
+export class ResturantAuthController {
   constructor(private readonly resturantService: ResturantService) {}
 
       @Post('register')

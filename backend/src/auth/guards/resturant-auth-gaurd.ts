@@ -7,6 +7,6 @@ export class ResturantAuthGuard implements CanActivate {
     context: ExecutionContext,
   ): boolean {
     const request = context.switchToHttp().getRequest();
-    return request.session.resturant.id !== undefined;
+    return request.session.resturant?.id !== undefined;
   }
 }
