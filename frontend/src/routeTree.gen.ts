@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthRegisterRouteImport } from './routes/auth/register'
 import { Route as AuthLoginRouteImport } from './routes/auth/login'
+import { Route as AuthResturantRegisterRouteImport } from './routes/auth/resturant/register'
+import { Route as AuthResturantLoginRouteImport } from './routes/auth/resturant/login'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +30,69 @@ const AuthLoginRoute = AuthLoginRouteImport.update({
   path: '/auth/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthResturantRegisterRoute = AuthResturantRegisterRouteImport.update({
+  id: '/auth/resturant/register',
+  path: '/auth/resturant/register',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthResturantLoginRoute = AuthResturantLoginRouteImport.update({
+  id: '/auth/resturant/login',
+  path: '/auth/resturant/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
+  '/auth/resturant/login': typeof AuthResturantLoginRoute
+  '/auth/resturant/register': typeof AuthResturantRegisterRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
+  '/auth/resturant/login': typeof AuthResturantLoginRoute
+  '/auth/resturant/register': typeof AuthResturantRegisterRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
+  '/auth/resturant/login': typeof AuthResturantLoginRoute
+  '/auth/resturant/register': typeof AuthResturantRegisterRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth/login' | '/auth/register'
+  fullPaths:
+    | '/'
+    | '/auth/login'
+    | '/auth/register'
+    | '/auth/resturant/login'
+    | '/auth/resturant/register'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth/login' | '/auth/register'
-  id: '__root__' | '/' | '/auth/login' | '/auth/register'
+  to:
+    | '/'
+    | '/auth/login'
+    | '/auth/register'
+    | '/auth/resturant/login'
+    | '/auth/resturant/register'
+  id:
+    | '__root__'
+    | '/'
+    | '/auth/login'
+    | '/auth/register'
+    | '/auth/resturant/login'
+    | '/auth/resturant/register'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthLoginRoute: typeof AuthLoginRoute
   AuthRegisterRoute: typeof AuthRegisterRoute
+  AuthResturantLoginRoute: typeof AuthResturantLoginRoute
+  AuthResturantRegisterRoute: typeof AuthResturantRegisterRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +118,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth/resturant/register': {
+      id: '/auth/resturant/register'
+      path: '/auth/resturant/register'
+      fullPath: '/auth/resturant/register'
+      preLoaderRoute: typeof AuthResturantRegisterRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/resturant/login': {
+      id: '/auth/resturant/login'
+      path: '/auth/resturant/login'
+      fullPath: '/auth/resturant/login'
+      preLoaderRoute: typeof AuthResturantLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +139,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthLoginRoute: AuthLoginRoute,
   AuthRegisterRoute: AuthRegisterRoute,
+  AuthResturantLoginRoute: AuthResturantLoginRoute,
+  AuthResturantRegisterRoute: AuthResturantRegisterRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
