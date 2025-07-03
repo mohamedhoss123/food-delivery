@@ -1,5 +1,5 @@
 import { Controller, Post,Body, UseFilters, Get,Req, Session, UseGuards, Response } from "@nestjs/common";
-import { ResturantService } from "src/resturant/resturant.service";
+import { ResturantService } from "src/auth/resturant/resturant-auth.service";
 import { CreateResturantDto } from "../dto/create-resturant.dto";
 import { LoginResturantDto } from "../dto/login-resturant.dto";
 import { ResturantAuthGuard } from "../guards/resturant-auth-gaurd";
@@ -16,13 +16,13 @@ export class ResturantController {
       @Post('login')
       async login(@Session() session: Record<string, any>,@Body() data: LoginResturantDto) {
           const resturant = await this.resturantService.login(data);
-          session.resturant.userId = resturant.id;
+          session.resturant.id = resturant.id;
           return 200 
       }
       @Get('me')
       @UseGuards(ResturantAuthGuard)
       async me(@Session() session: Record<string, any>) {
-          return session.resturant.userId;
+          return session.resturant.id;
       }
   
       @Get("logout")

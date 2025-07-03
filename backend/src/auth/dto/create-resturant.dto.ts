@@ -1,5 +1,6 @@
 export class CreateResturantDto {
     name: string;
     description: string;
-    image: string;
+    password: string;
+    email: string;
 }

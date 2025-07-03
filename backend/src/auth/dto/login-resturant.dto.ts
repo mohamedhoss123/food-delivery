@@ -1,4 +1,4 @@
 export class LoginResturantDto {
-    name: string;
+    email: string;
     password: string;
 }
