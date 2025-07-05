@@ -3,7 +3,9 @@ import { ResturantService } from "src/auth/services/resturant-auth.service";
 import { CreateResturantDto } from "../dto/create-resturant.dto";
 import { LoginResturantDto } from "../dto/login-resturant.dto";
 import { ResturantAuthGuard } from "../guards/resturant-auth-gaurd";
+import { PrismaErrorFilter } from "../filters/prisma-filters";
 @Controller('auth/resturant')
+@UseFilters(new PrismaErrorFilter())
 export class ResturantAuthController {
   constructor(private readonly resturantService: ResturantService) {}
 
@@ -16,7 +18,8 @@ export class ResturantAuthController {
       @Post('login')
       async login(@Session() session: Record<string, any>,@Body() data: LoginResturantDto) {
           const resturant = await this.resturantService.login(data);
-          session.resturant.id = resturant.id;
+          console.log(resturant)
+          session.resturant= {id:resturant.id};
           return 200 
       }
       @Get('me')
