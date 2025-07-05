@@ -14,7 +14,7 @@ function RouteComponent() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const response = await api('/api/auth/login', {
+    const response = await api('/api/auth/resturant/login', {
       method: 'POST',
    
       body:  {email, password },

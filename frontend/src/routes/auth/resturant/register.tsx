@@ -26,7 +26,7 @@ function RouteComponent() {
     console.log('Form submitted:', formData);
     // Here you can add your API call to submit the form data
     try {
-      const response = await api('/api/auth/register',{method:'POST',body:formData});
+      const response = await api('/api/auth/resturant/register',{method:'POST',body:formData});
       console.log('Registration successful:', response.data);
     } catch (error) {
       console.error('Registration failed:', error);
