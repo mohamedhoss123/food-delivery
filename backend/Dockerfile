@@ -3,13 +3,21 @@ FROM node:20-alpine
 
 # Set working directory
 WORKDIR /app
-# Set up pnpm
-RUN npm install -g pnpm 
-# COPY ./package.json ./pnpm-lock.yaml ./
 
-# Copy the rest of the backend source code
-COPY . .
+# Install pnpm globally
+RUN npm install -g pnpm
+
+# Copy only lock and manifest files first for better layer caching
+COPY package.json pnpm-lock.yaml ./
+
+# Install dependencies
 RUN pnpm install --frozen-lockfile
+
+# Copy the rest of the code
+COPY . .
+
+# Generate Prisma client
 RUN npx prisma generate
-# Build the NestJS app
+
+# Start development server
 CMD [ "pnpm", "start:dev" ]

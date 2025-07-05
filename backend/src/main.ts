@@ -5,7 +5,7 @@ import * as cookieParser from 'cookie-parser';
 import { PrismaSessionStore } from '@quixo3/prisma-session-store';
 import { PrismaService } from './prisma/prisma.service';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-
+import { ValidationPipe } from '@nestjs/common';
 async function bootstrap() {
   const port = process.env.PORT || 3001;
 
@@ -34,7 +34,13 @@ async function bootstrap() {
   
   // Global prefix
   app.setGlobalPrefix('api');
-  
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+    }),
+  );  
   const config = new DocumentBuilder()
   .setTitle('Cats example')
   .setDescription('The cats API description')
