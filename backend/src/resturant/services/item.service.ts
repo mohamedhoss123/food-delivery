@@ -24,4 +24,21 @@ export class ItemService {
         });
         return items;
       }
+
+    getItem(id:string) {
+        const item = this.prisma.item.findUnique({
+          where: {
+            id
+          },
+        });
+        return item;
+      }
+    deleteItem(id:string) {
+        const item = this.prisma.item.delete({
+          where: {
+            id
+          },
+        });
+        return item;
+      }
 }
