@@ -9,18 +9,34 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ResturantRouteRouteImport } from './routes/resturant/route'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ResturantItemRouteImport } from './routes/resturant/item'
+import { Route as ResturantHomeRouteImport } from './routes/resturant/home'
 import { Route as AuthRegisterRouteImport } from './routes/auth/register'
 import { Route as AuthLoginRouteImport } from './routes/auth/login'
-import { Route as ResturantItemIndexRouteImport } from './routes/resturant/item/index'
-import { Route as ResturantItemCreateRouteImport } from './routes/resturant/item/create'
 import { Route as AuthResturantRegisterRouteImport } from './routes/auth/resturant/register'
 import { Route as AuthResturantLoginRouteImport } from './routes/auth/resturant/login'
 
+const ResturantRouteRoute = ResturantRouteRouteImport.update({
+  id: '/resturant',
+  path: '/resturant',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
+} as any)
+const ResturantItemRoute = ResturantItemRouteImport.update({
+  id: '/item',
+  path: '/item',
+  getParentRoute: () => ResturantRouteRoute,
+} as any)
+const ResturantHomeRoute = ResturantHomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => ResturantRouteRoute,
 } as any)
 const AuthRegisterRoute = AuthRegisterRouteImport.update({
   id: '/auth/register',
@@ -30,16 +46,6 @@ const AuthRegisterRoute = AuthRegisterRouteImport.update({
 const AuthLoginRoute = AuthLoginRouteImport.update({
   id: '/auth/login',
   path: '/auth/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ResturantItemIndexRoute = ResturantItemIndexRouteImport.update({
-  id: '/resturant/item/',
-  path: '/resturant/item/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ResturantItemCreateRoute = ResturantItemCreateRouteImport.update({
-  id: '/resturant/item/create',
-  path: '/resturant/item/create',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthResturantRegisterRoute = AuthResturantRegisterRouteImport.update({
@@ -55,80 +61,106 @@ const AuthResturantLoginRoute = AuthResturantLoginRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/resturant': typeof ResturantRouteRouteWithChildren
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
+  '/resturant/home': typeof ResturantHomeRoute
+  '/resturant/item': typeof ResturantItemRoute
   '/auth/resturant/login': typeof AuthResturantLoginRoute
   '/auth/resturant/register': typeof AuthResturantRegisterRoute
-  '/resturant/item/create': typeof ResturantItemCreateRoute
-  '/resturant/item': typeof ResturantItemIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/resturant': typeof ResturantRouteRouteWithChildren
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
+  '/resturant/home': typeof ResturantHomeRoute
+  '/resturant/item': typeof ResturantItemRoute
   '/auth/resturant/login': typeof AuthResturantLoginRoute
   '/auth/resturant/register': typeof AuthResturantRegisterRoute
-  '/resturant/item/create': typeof ResturantItemCreateRoute
-  '/resturant/item': typeof ResturantItemIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/resturant': typeof ResturantRouteRouteWithChildren
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
+  '/resturant/home': typeof ResturantHomeRoute
+  '/resturant/item': typeof ResturantItemRoute
   '/auth/resturant/login': typeof AuthResturantLoginRoute
   '/auth/resturant/register': typeof AuthResturantRegisterRoute
-  '/resturant/item/create': typeof ResturantItemCreateRoute
-  '/resturant/item/': typeof ResturantItemIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/resturant'
     | '/auth/login'
     | '/auth/register'
+    | '/resturant/home'
+    | '/resturant/item'
     | '/auth/resturant/login'
     | '/auth/resturant/register'
-    | '/resturant/item/create'
-    | '/resturant/item'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/resturant'
     | '/auth/login'
     | '/auth/register'
+    | '/resturant/home'
+    | '/resturant/item'
     | '/auth/resturant/login'
     | '/auth/resturant/register'
-    | '/resturant/item/create'
-    | '/resturant/item'
   id:
     | '__root__'
     | '/'
+    | '/resturant'
     | '/auth/login'
     | '/auth/register'
+    | '/resturant/home'
+    | '/resturant/item'
     | '/auth/resturant/login'
     | '/auth/resturant/register'
-    | '/resturant/item/create'
-    | '/resturant/item/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ResturantRouteRoute: typeof ResturantRouteRouteWithChildren
   AuthLoginRoute: typeof AuthLoginRoute
   AuthRegisterRoute: typeof AuthRegisterRoute
   AuthResturantLoginRoute: typeof AuthResturantLoginRoute
   AuthResturantRegisterRoute: typeof AuthResturantRegisterRoute
-  ResturantItemCreateRoute: typeof ResturantItemCreateRoute
-  ResturantItemIndexRoute: typeof ResturantItemIndexRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/resturant': {
+      id: '/resturant'
+      path: '/resturant'
+      fullPath: '/resturant'
+      preLoaderRoute: typeof ResturantRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/resturant/item': {
+      id: '/resturant/item'
+      path: '/item'
+      fullPath: '/resturant/item'
+      preLoaderRoute: typeof ResturantItemRouteImport
+      parentRoute: typeof ResturantRouteRoute
+    }
+    '/resturant/home': {
+      id: '/resturant/home'
+      path: '/home'
+      fullPath: '/resturant/home'
+      preLoaderRoute: typeof ResturantHomeRouteImport
+      parentRoute: typeof ResturantRouteRoute
     }
     '/auth/register': {
       id: '/auth/register'
@@ -142,20 +174,6 @@ declare module '@tanstack/react-router' {
       path: '/auth/login'
       fullPath: '/auth/login'
       preLoaderRoute: typeof AuthLoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/resturant/item/': {
-      id: '/resturant/item/'
-      path: '/resturant/item'
-      fullPath: '/resturant/item'
-      preLoaderRoute: typeof ResturantItemIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/resturant/item/create': {
-      id: '/resturant/item/create'
-      path: '/resturant/item/create'
-      fullPath: '/resturant/item/create'
-      preLoaderRoute: typeof ResturantItemCreateRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth/resturant/register': {
@@ -175,14 +193,27 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface ResturantRouteRouteChildren {
+  ResturantHomeRoute: typeof ResturantHomeRoute
+  ResturantItemRoute: typeof ResturantItemRoute
+}
+
+const ResturantRouteRouteChildren: ResturantRouteRouteChildren = {
+  ResturantHomeRoute: ResturantHomeRoute,
+  ResturantItemRoute: ResturantItemRoute,
+}
+
+const ResturantRouteRouteWithChildren = ResturantRouteRoute._addFileChildren(
+  ResturantRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ResturantRouteRoute: ResturantRouteRouteWithChildren,
   AuthLoginRoute: AuthLoginRoute,
   AuthRegisterRoute: AuthRegisterRoute,
   AuthResturantLoginRoute: AuthResturantLoginRoute,
   AuthResturantRegisterRoute: AuthResturantRegisterRoute,
-  ResturantItemCreateRoute: ResturantItemCreateRoute,
-  ResturantItemIndexRoute: ResturantItemIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
