@@ -20,7 +20,7 @@ export const Sidebar: React.FC = () => {
            </Link>
 
            <Link className="space-4 flex flex-row  gap-2 pl-15 pt-7"
-               to="//resturant/item"
+               to="/resturant/item"
            >
                <IoPizzaSharp className="text-xl"></IoPizzaSharp>
                <h1 className=" ">Items</h1>
